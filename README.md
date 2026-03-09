@@ -60,32 +60,3 @@ Maven
 
 Git & GitHub
 
-Project Structure
-RequestHeaderViewer
-│
-├── src/main/java
-│   ├── controller
-│   │   ├── HeaderServlet
-│   │   ├── HistoryServlet
-│   │   ├── DeleteHeaderServlet
-│   │   └── UpdateHeaderServlet
-│   │
-│   ├── dao
-│   │   └── HeaderDAO
-│   │
-│   ├── model
-│   │   └── Header
-│   │
-│   └── util
-│       └── DBConnection
-│
-├── src/main/webapp
-│   ├── css
-│   │   └── style.css
-│   │
-│   ├── index.jsp
-│   ├── headers.jsp
-│   ├── history.jsp
-│   └── edit.jsp
-│
-└── pom.xml
