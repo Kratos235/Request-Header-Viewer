@@ -1,18 +1,25 @@
+*{
+    box-sizing:border-box;
+}
+
 body{
     font-family: Arial, sans-serif;
     background:#121212;
     color:#e0e0e0;
     text-align:center;
     margin:0;
+    padding:0;
 }
 
 .container{
-    margin:60px auto;
-    max-width:1000px;
+    margin:40px auto;
+    width:95%;
+    max-width:1400px;
     padding:20px 30px;
     background:#1e1e1e;
     border-radius:8px;
     box-shadow:0 4px 16px rgba(0,0,0,0.6);
+    overflow-x:auto;
 }
 
 h1, h2{
@@ -23,15 +30,16 @@ h1, h2{
 
 .btn{
     display:inline-block;
-    padding:10px 18px;
+    padding:8px 16px;
     background:#3f51b5;
     color:#ffffff;
     text-decoration:none;
-    margin:10px 8px;
+    margin:4px;
     border-radius:6px;
     border:none;
     cursor:pointer;
-    font-size:14px;
+    font-size:13px;
+    white-space:nowrap;
 }
 
 .btn.secondary{
@@ -46,6 +54,14 @@ h1, h2{
     background:#26a69a;
 }
 
+.btn.danger{
+    background:#d32f2f;
+}
+
+.btn.danger:hover{
+    background:#ef5350;
+}
+
 a{
     color:#90caf9;
 }
@@ -54,23 +70,57 @@ a:hover{
     color:#bbdefb;
 }
 
+/* ---------- TABLE ---------- */
 table{
     margin:20px auto;
     border-collapse:collapse;
-    width:90%;
+    width:100%;
+    table-layout:auto;
     background:#1e1e1e;
-    border-radius:6px;
-    overflow:hidden;
 }
 
 th,td{
     border:1px solid #333;
-    padding:10px 12px;
+    padding:10px 14px;
+    text-align:left;
+    vertical-align:middle;
 }
 
 th{
     background:#3f51b5;
     color:white;
+    white-space:nowrap;
+}
+
+/* # column – keep narrow */
+td:first-child,
+th:first-child{
+    text-align:center;
+    width:40px;
+}
+
+/* Value column – allow wrapping for long strings */
+td:nth-child(3){
+    word-break:break-all;
+    max-width:420px;
+}
+
+/* IP column – no wrap */
+td:nth-child(4){
+    white-space:nowrap;
+}
+
+/* Note column */
+td:nth-child(5){
+    min-width:80px;
+}
+
+/* Actions column */
+td:last-child,
+th:last-child{
+    text-align:center;
+    white-space:nowrap;
+    width:160px;
 }
 
 tr:nth-child(even){
@@ -85,6 +135,7 @@ tr:hover{
     background:#333333;
 }
 
+/* ---------- FORM INPUTS ---------- */
 input[type="text"], input[type="search"], input[type="number"], input[type="password"], textarea{
     background:#121212;
     border:1px solid #555;
@@ -108,13 +159,49 @@ button:hover{
     background:#5c6bc0;
 }
 
-.actions a{
-    margin:0 4px;
+/* ---------- ACTIONS CELL ---------- */
+.actions{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    white-space:nowrap;
 }
 
+.actions form{
+    display:inline;
+    margin:0;
+    padding:0;
+}
+
+/* ---------- TOOLBAR ---------- */
+.toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+.search-input{
+    flex:1;
+    min-width:200px;
+    max-width:400px;
+    padding:10px 14px !important;
+    font-size:14px;
+    border-radius:6px !important;
+}
+
+.record-count{
+    color:#aaa;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+/* ---------- NOTE CELL ---------- */
 .note-cell{
     text-align:left;
-    white-space:nowrap;
 }
 
 .note-text{

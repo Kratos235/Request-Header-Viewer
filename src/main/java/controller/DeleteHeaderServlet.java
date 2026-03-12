@@ -10,10 +10,17 @@ import java.io.IOException;
 
 public class DeleteHeaderServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request,HttpServletResponse response)
-            throws IOException{
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
 
-        int id=Integer.parseInt(request.getParameter("id"));
+        int id;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/history");
+            return;
+        }
 
         HeaderDAO.deleteHeader(id);
 

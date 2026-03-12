@@ -1,62 +1,65 @@
-Request Header Viewer (CRUD Web Application)
-Overview
+# Request Header Viewer (CRUD Web Application)
+
+## Overview
 
 This project is a Java-based web application that captures HTTP request headers sent by a client browser and stores them in a MySQL database. The application allows users to view the headers of the current request as well as manage previously stored header records using CRUD operations.
 
 The application is built using Java Servlets, JSP, JDBC, and MySQL, following a simple MVC architecture.
 
-Features
+## Features
 
-Capture HTTP request headers from the browser
+- Capture HTTP request headers from the browser
+- Store request headers in a MySQL database
+- View current request headers
+- View history of stored headers with record count
+- Update notes associated with a header record
+- Delete stored header records with confirmation prompt
+- Clear all records at once
+- Client-side search/filter on history page
+- XSS-safe output using JSTL `<c:out>` tags
 
-Store request headers in a MySQL database
+## Technologies Used
 
-View current request headers
+### Frontend
+- HTML5
+- CSS3
+- JSP (JavaServer Pages)
+- JSTL (JSP Standard Tag Library)
+- Expression Language (EL)
 
-View history of stored headers
+### Backend
+- Java 17
+- Java Servlets
+- MVC architecture
 
-Update notes associated with a header record
+### Data Access
+- JDBC (Java Database Connectivity)
+- DAO (Data Access Object) pattern
 
-Delete stored header records
+### Database
+- MySQL
 
-Technologies Used
-Frontend
+### Tools
+- IntelliJ IDEA
+- Apache Tomcat
+- Maven
+- Git & GitHub
 
-HTML5
+## Database Setup
 
-CSS3
+Run the `schema.sql` file to create the required database and table:
 
-JSP (JavaServer Pages)
+```sql
+mysql -u root -p < schema.sql
+```
 
-JSTL (JSP Standard Tag Library)
+Or open `schema.sql` in MySQL Workbench and execute it.
 
-Expression Language (EL)
+## How to Run
 
-Backend
-
-Java
-
-Java Servlets
-
-MVC architecture
-
-Data Access
-
-JDBC (Java Database Connectivity)
-
-DAO (Data Access Object) pattern
-
-Database
-
-MySQL
-
-Tools
-
-IntelliJ IDEA
-
-Apache Tomcat
-
-Maven
-
-Git & GitHub
-
+1. Clone the repository
+2. Run `schema.sql` against your MySQL server
+3. Update the database credentials in `src/main/java/util/DBConnection.java`
+4. Build the project using Maven: `mvn clean package`
+5. Deploy the generated WAR file (`target/RequestHeaderViewer.war`) to Apache Tomcat
+6. Open `http://localhost:8080/RequestHeaderViewer/` in your browser

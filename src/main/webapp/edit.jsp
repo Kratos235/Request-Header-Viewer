@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="model.Header" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 
@@ -17,35 +17,31 @@
 
     <h2>Edit Header Note</h2>
 
-    <%
-        Header h = (Header) request.getAttribute("header");
-    %>
+    <form action="${pageContext.request.contextPath}/update" method="post">
 
-    <form action="<%=request.getContextPath()%>/update" method="post">
-
-        <input type="hidden" name="id" value="<%=h.getId()%>">
+        <input type="hidden" name="id" value="${header.id}">
 
         <table>
 
             <tr>
                 <td>Header Name</td>
-                <td><%=h.getName()%></td>
+                <td><c:out value="${header.name}"/></td>
             </tr>
 
             <tr>
                 <td>Header Value</td>
-                <td><%=h.getValue()%></td>
+                <td><c:out value="${header.value}"/></td>
             </tr>
 
             <tr>
                 <td>Client IP</td>
-                <td><%=h.getIp()%></td>
+                <td><c:out value="${header.ip}"/></td>
             </tr>
 
             <tr>
                 <td>Note</td>
                 <td>
-                    <input type="text" name="note" value="<%=h.getNote()%>" required>
+                    <input type="text" name="note" value="<c:out value='${header.note}' default=''/>" required>
                 </td>
             </tr>
 
@@ -59,7 +55,7 @@
 
     <br>
 
-    <a class="btn secondary" href="<%=request.getContextPath()%>/history">Back to History</a>
+    <a class="btn secondary" href="${pageContext.request.contextPath}/history">Back to History</a>
 
 </div>
 

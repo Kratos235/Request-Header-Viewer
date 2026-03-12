@@ -10,13 +10,9 @@ public class HeaderDAO {
 
     public static void saveHeader(Header h){
 
-        try{
-
-            Connection conn = DBConnection.getConnection();
-
-            String sql="INSERT INTO request_headers(header_name,header_value,client_ip,note) VALUES(?,?,?,?)";
-
-            PreparedStatement ps=conn.prepareStatement(sql);
+        try(Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                "INSERT INTO request_headers(header_name,header_value,client_ip,note) VALUES(?,?,?,?)")){
 
             ps.setString(1,h.getName());
             ps.setString(2,h.getValue());
@@ -32,13 +28,9 @@ public class HeaderDAO {
 
         List<Header> list=new ArrayList<>();
 
-        try{
-
-            Connection conn=DBConnection.getConnection();
-
+        try(Connection conn=DBConnection.getConnection();
             Statement st=conn.createStatement();
-
-            ResultSet rs=st.executeQuery("SELECT * FROM request_headers");
+            ResultSet rs=st.executeQuery("SELECT * FROM request_headers")){
 
             while(rs.next()){
 
@@ -56,14 +48,36 @@ public class HeaderDAO {
         return list;
     }
 
+    public static Header getHeaderById(int id){
+
+        try(Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement(
+                "SELECT * FROM request_headers WHERE id=?")){
+
+            ps.setInt(1,id);
+
+            try(ResultSet rs=ps.executeQuery()){
+                if(rs.next()){
+                    return new Header(
+                            rs.getInt("id"),
+                            rs.getString("header_name"),
+                            rs.getString("header_value"),
+                            rs.getString("client_ip"),
+                            rs.getString("note")
+                    );
+                }
+            }
+
+        }catch(Exception e){e.printStackTrace();}
+
+        return null;
+    }
+
     public static void deleteHeader(int id){
 
-        try{
-
-            Connection conn=DBConnection.getConnection();
-
+        try(Connection conn=DBConnection.getConnection();
             PreparedStatement ps=conn.prepareStatement(
-                    "DELETE FROM request_headers WHERE id=?");
+                "DELETE FROM request_headers WHERE id=?")){
 
             ps.setInt(1,id);
 
@@ -74,17 +88,24 @@ public class HeaderDAO {
 
     public static void updateNote(int id,String note){
 
-        try{
-
-            Connection conn=DBConnection.getConnection();
-
+        try(Connection conn=DBConnection.getConnection();
             PreparedStatement ps=conn.prepareStatement(
-                    "UPDATE request_headers SET note=? WHERE id=?");
+                "UPDATE request_headers SET note=? WHERE id=?")){
 
             ps.setString(1,note);
             ps.setInt(2,id);
 
             ps.executeUpdate();
+
+        }catch(Exception e){e.printStackTrace();}
+    }
+
+    public static void deleteAllHeaders(){
+
+        try(Connection conn=DBConnection.getConnection();
+            Statement st=conn.createStatement()){
+
+            st.executeUpdate("DELETE FROM request_headers");
 
         }catch(Exception e){e.printStackTrace();}
     }

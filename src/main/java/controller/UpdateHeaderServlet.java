@@ -10,14 +10,21 @@ import java.io.IOException;
 
 public class UpdateHeaderServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request,HttpServletResponse response)
-            throws IOException{
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
 
-        int id=Integer.parseInt(request.getParameter("id"));
+        int id;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/history");
+            return;
+        }
 
-        String note=request.getParameter("note");
+        String note = request.getParameter("note");
 
-        HeaderDAO.updateNote(id,note);
+        HeaderDAO.updateNote(id, note);
 
         response.sendRedirect("history");
     }
