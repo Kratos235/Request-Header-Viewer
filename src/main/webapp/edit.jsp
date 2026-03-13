@@ -19,29 +19,29 @@
 
     <form action="${pageContext.request.contextPath}/update" method="post">
 
-        <input type="hidden" name="id" value="${header.id}">
+        <input type="hidden" name="id" value="${headerRecord.id}">
 
         <table>
 
             <tr>
                 <td>Header Name</td>
-                <td><c:out value="${header.name}"/></td>
+                <td><c:out value="${headerRecord.name}"/></td>
             </tr>
 
             <tr>
                 <td>Header Value</td>
-                <td><c:out value="${header.value}"/></td>
+                <td><c:out value="${headerRecord.value}"/></td>
             </tr>
 
             <tr>
                 <td>Client IP</td>
-                <td><c:out value="${header.ip}"/></td>
+                <td><c:out value="${headerRecord.ip}"/></td>
             </tr>
 
             <tr>
                 <td>Note</td>
                 <td>
-                    <input type="text" name="note" value="<c:out value='${header.note}' default=''/>" required>
+                    <input type="text" name="note" value="${headerRecord.note}" required>
                 </td>
             </tr>
 

@@ -30,9 +30,8 @@ public class EditHeaderServlet extends HttpServlet {
             return;
         }
 
-        request.setAttribute("header", target);
+        request.setAttribute("headerRecord", target);
         RequestDispatcher rd = request.getRequestDispatcher("edit.jsp");
         rd.forward(request, response);
     }
 }
-
