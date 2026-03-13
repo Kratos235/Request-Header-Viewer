@@ -16,7 +16,6 @@ The application is built using Java Servlets, JSP, JDBC, and MySQL, following a 
 - Delete stored header records with confirmation prompt
 - Clear all records at once
 - Client-side search/filter on history page
-- XSS-safe output using JSTL `<c:out>` tags
 
 ## Technologies Used
 
@@ -44,22 +43,3 @@ The application is built using Java Servlets, JSP, JDBC, and MySQL, following a 
 - Apache Tomcat
 - Maven
 - Git & GitHub
-
-## Database Setup
-
-Run the `schema.sql` file to create the required database and table:
-
-```sql
-mysql -u root -p < schema.sql
-```
-
-Or open `schema.sql` in MySQL Workbench and execute it.
-
-## How to Run
-
-1. Clone the repository
-2. Run `schema.sql` against your MySQL server
-3. Update the database credentials in `src/main/java/util/DBConnection.java`
-4. Build the project using Maven: `mvn clean package`
-5. Deploy the generated WAR file (`target/RequestHeaderViewer.war`) to Apache Tomcat
-6. Open `http://localhost:8080/RequestHeaderViewer/` in your browser
